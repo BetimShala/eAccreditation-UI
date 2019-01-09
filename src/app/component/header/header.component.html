@@ -1,0 +1,12 @@
+<header class="app-header">
+  <app-header-logo class="app-header__logo" style="background-color:#2196F3 !important"></app-header-logo>
+  <!-- Sidebar toggle button-->
+  <app-header-toggle #headerToggle class="app-sidebar__toggle" style="cursor:pointer" (click)="alert()"></app-header-toggle>
+  <!-- Navbar Right Menu-->
+  <ul class="app-nav">
+    <!--Notification Menu-->
+    <!-- <app-notification-header></app-notification-header> -->
+    <!-- User Menu-->
+    <app-profile-header></app-profile-header>
+  </ul>
+</header>

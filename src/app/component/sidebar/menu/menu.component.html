@@ -1,0 +1,82 @@
+<ul class="app-menu">
+    <li>
+        <a class="app-menu__item" routerLink='/'>
+            <i class="app-menu__icon fa fa-home"></i>
+            <span class="app-menu__label">
+                Home
+            </span>
+        </a>
+    </li>
+    <li class="treeview" [ngClass]="{'is-expanded': isHidenUsers}" (click)="showUsers()">
+        <a class="app-menu__item" style=" cursor: pointer" data-toggle="treeview">
+            <i class="app-menu__icon fa fa-user-o"></i>
+            <span class="app-menu__label">
+                Users
+            </span>
+            <i class="treeview-indicator fa fa-angle-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li>
+                <a class="treeview-item" routerLink="/user/create">
+                    <i class="icon fa fa-circle-o"></i>
+                    Create User
+                </a>
+            </li>
+            <li>
+                <a class="treeview-item" routerLink="/user/list" >
+                    <i class="icon fa fa-circle-o"></i>
+                    Users List
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="treeview" [ngClass]="{'is-expanded app-menu__item': isHidenProducts}" (click)="showProduct()">
+        <a class="app-menu__item" style=" cursor: pointer" data-toggle="treeview">
+            <i class="app-menu__icon fa fa-edit"></i>
+            <span class="app-menu__label">
+                Units
+            </span>
+            <i class="treeview-indicator fa fa-angle-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li>
+                <a class="treeview-item" routerLink="/unit/add">
+                    <i class="icon fa fa-circle-o"></i>
+                    Create Unit
+                </a>
+            </li>
+            <li>
+                <a class="treeview-item" routerLink="/unit/list">
+                    <i class="icon fa fa-circle-o"></i>
+                    Units List
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="treeview " [ngClass]="{'is-expanded': isHidenDeals }" (click)="showDeals()">
+        <a class="app-menu__item" style=" cursor: pointer" data-toggle="treeview">
+            <i class="app-menu__icon fa fa-handshake-o"></i>
+            <span class="app-menu__label">
+                Deals
+            </span>
+            <i class="treeview-indicator fa fa-angle-right"></i>
+        </a>
+        <ul class="treeview-menu is-expanded">
+            <li>
+                <a class="treeview-item" routerLink="/deal/list">
+                    <i class="icon fa fa-circle-o"></i>
+                    Deals List
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a class="app-menu__item" routerLink='/statistics'>
+            <i class="app-menu__icon fa fa-bar-chart"></i>
+            <span class="app-menu__label">
+                Statistics
+            </span>
+        </a>
+    </li>
+
+</ul>

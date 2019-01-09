@@ -1,0 +1,144 @@
+<br>
+<div class="row justify-content-center">
+  <div class="col-md-6 justify-content-center">
+    <div class="tile" style="float: left; width: 100%;box-shadow: none !important">
+      <div class="row">
+        <div class="col-md-3">
+          <h3 class="tile-title pull-left" style="margin-top: 15%">User Info</h3>     
+        </div>
+        <div class="col-md-7">
+          <h5 class="pull-right" style="margin-top: 5%;margin-right: -8%;">Kosovo Accreditation Agency</h5>     
+        </div>
+        <div class="col-md-2">
+          <img src="../../../../assets/images/logo.jpg" class="pull-right"  alt="" height="100"> 
+        </div>
+      </div>
+      <hr>
+      <div class="tile-body">
+        <form method="post" class="row" [formGroup]="registerForm" (submit)="register()">
+          <div class="col-md-12" >
+            <div class="form-row justify-content-center">
+              <div class="form-group col-md-4">
+                <label class="control-label">First Name</label>
+                <input id="firstName" name="firstName" formControlName="firstName" class="form-control" type="text" placeholder="Enter first name">
+                <span *ngIf="isFieldInvalid('firstName')" style="color:#933939">
+                  Please enter your First Name
+                </span>
+                
+              </div>
+
+              <div class="form-group col-md-4">
+                <label class="control-label">Last Name</label>
+                <input id="lastName" class="form-control" name="lastName" formControlName="lastName" type="text" placeholder="Enter last name">
+                <span *ngIf="isFieldInvalid('lastName')" style="color:#933939">
+                  Please enter your Last Name
+                </span>
+              </div>
+            </div>
+
+            <div class="form-row justify-content-center">
+              <div class="form-group col-md-8" style="margin-left: 16%;">
+              <label class="control-label">Personal Number</label>
+              <input id="personalNumber" name="personalNumber" formControlName="personalNumber" 
+                     class="form-control" type="text" placeholder="Enter personal number" (focus)="pnInputFocus()" (focusout)="pnInputFocus()">
+              <span *ngIf="isFieldInvalid('personalNumber')" style="color:#933939">
+                Please enter your Personal Number
+              </span>
+            </div>
+            <div class="form-group col-md-2" style="margin-top: 3.7%;">
+              <a class="btn btn-primary" *ngIf="PNInputFocus" (click)="registerByPN()" style="color:white" href>
+                Search by personal number
+              </a>
+            </div>
+            </div>
+
+            <div class="form-row justify-content-center">
+              <div class="form-group col-md-8">
+              <label class="control-label">Country</label>
+              <select class="form-control" id="countryId" name="countryId" formControlName="countryId" >
+                <option [ngValue]="">Select Country</option>   
+                <option [ngValue]="1">Albania</option>   
+                <option [ngValue]="2">Kosovo</option>              
+              </select>
+              <span *ngIf="isFieldInvalid('countryId')" style="color:#933939">
+                Please select one Country
+              </span>
+            </div>
+            </div>
+
+            <div class="form-row justify-content-center">
+              <div class="form-group col-md-8">
+              <label class="control-label">Maiden Name</label>
+              <input id="maidenName" name="maidenName" formControlName="maidenName" class="form-control" type="text" placeholder="Enter maiden name">             
+            </div>
+            </div>
+
+            <div class="form-row justify-content-center">
+              <div class="form-group col-md-8">
+              <label class="control-label">Gender</label>
+              <select class="form-control" id="isMale" name="isMale" formControlName="isMale">
+                <option [ngValue]="">Select Gender</option>   
+                <option [ngValue]="1">Male</option>   
+                <option [ngValue]="0">Female</option>                
+              </select>
+              <span *ngIf="isFieldInvalid('isMale')" style="color:#933939">
+                Please select the Gender
+              </span>
+            </div>
+            </div>
+
+            <div class="form-row justify-content-center">
+              <div class="form-group col-md-8">
+              <label class="control-label">Birth Date</label>
+              <input id="birthDate" name="birthDate" formControlName="birthDate" class="form-control" type="date" placeholder="Enter birth date">
+              <span class="text-danger"></span>
+            </div>
+            </div>
+
+            <div class="form-row justify-content-center">
+              <div class="form-group col-md-8">
+              <label class="control-label">Email</label>
+              <input id="email" class="form-control" name="email" formControlName="email" type="email" placeholder="Enter email address">
+              <span *ngIf="isFieldInvalid('email')" style="color:#933939">
+                Please enter your Email Address
+              </span>
+            </div>
+            </div>
+          
+
+
+            <div class="form-row justify-content-center">
+              <div class="form-group col-md-8">
+              <label class="control-label">Phone Number</label>
+              <input id="phoneNumber" name="phoneNumber" formControlName="phoneNumber" class="form-control" type="text" placeholder="Enter phone number">
+              <span *ngIf="isFieldInvalid('phoneNumber')" style="color:#933939">
+                Please enter your PhoneNumber
+              </span>
+            </div>
+            </div>
+
+            
+
+            <div class="form-row justify-content-center">
+              <div class="form-group col-md-8">
+                <label class="control-label">Password</label>
+                <input id="password" class="form-control" type="password" name="password" formControlName="password" placeholder="Enter password">
+                <span *ngIf="isFieldInvalid('password')" style="color:#933939">
+                  Please enter Password
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="tile-footer" style="width:100%;">
+            <div class="offset-10">
+              <button type="submit" class="btn btn-primary">
+                <i class="fa fa-fw fa-lg fa-check-circle"></i>
+                Register
+              </button>              
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

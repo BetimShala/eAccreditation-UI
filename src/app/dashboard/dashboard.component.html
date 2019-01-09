@@ -1,0 +1,16 @@
+<body class="app sidebar-mini rtl pace-done" [ngClass]="{'sidenav-toggled': isToggle}">
+  <aside class="app-sidebar">
+    <!-- App Header -->
+    <app-header></app-header>
+    <!-- End -->
+
+    <!-- App Sidebar -->
+    <app-sidebar></app-sidebar>
+    <!-- End -->
+  </aside>
+
+  <!-- App content -->
+  <main class="app-content">
+    <router-outlet></router-outlet>
+  </main>
+</body>
