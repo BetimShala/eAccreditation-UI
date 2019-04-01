@@ -1,0 +1,264 @@
+<div class="app-title">
+  <div>
+    <h1><i class="fa fa-edit"></i> Apply for Accreditation</h1>
+    <p>This page shows the form of application for accreditation.</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb side">
+    <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+    <li class="breadcrumb-item">Accreditation</li>
+    <li class="breadcrumb-item active"><a href="">Apply for Accreditation</a></li>
+  </ul>
+</div>
+<br><br>
+<div class="row mt-5">
+  <div class="col-md-12">
+    <div class="tile" style="margin-top:-40px !important;">
+      <div class="tile-body">
+
+        <mat-horizontal-stepper [linear]="isLinear" #stepper>
+          <mat-step [stepControl]="accrAppFormGroup">
+            <form [formGroup]="accrAppFormGroup">
+              <ng-template matStepLabel>General Info</ng-template>
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="accreditationTypeId">Accreditation Type</label>
+                  <select class="form-control" name="accreditationTypeId" id="accreditationTypeId"
+                    formControlName="accreditationTypeId">
+                    <option *ngFor="let accrType of accrTypes" [value]="accrType.id">{{accrType.description}}</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="universityId">University</label>
+                  <select class="form-control" name="universityId" id="universityId" formControlName="universityId"
+                    (change)='onUniversityChange($event)'>
+                    <option *ngFor="let university of universities" [value]="university.id">{{university.name}}</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="academicYear">Academic Year</label>
+                  <select class="form-control" name="academicYear" id="academicYear" formControlName="academicYear"
+                    [(ngModel)]="selectedAcademicYear" (change)='onAcademicYearChange($event)'>
+                    <option *ngFor="let ay of academicYears" [value]="ay">{{ay}}</option>
+                  </select>
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-md-12">
+                  <button class="btn btn-primary pull-right" mat-button matStepperNext>Next</button>
+                </div>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="accrSPFormGroup">
+            <form [formGroup]="accrSPFormGroup">
+              <ng-template matStepLabel>Study programm info</ng-template>
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="facultyId">Faculty</label>
+                  <select class="form-control" name="facultyId" id="facultyId" formControlName="facultyId">
+                    <option *ngFor="let faculty of faculties" [value]="faculty.id">{{faculty.name}}</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="educationLevelId">Education Level</label>
+                  <select class="form-control" name="educationLevelId" id="educationLevelId"
+                    formControlName="educationLevelId">
+                    <option *ngFor="let edu of educationLevels" [value]="edu.id">{{edu.description}}</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="programmDescription">Programm name</label>
+                  <input type="text" class="form-control" id="programmDescription" formControlName="programmDescription"
+                    placeholder="Programm name">
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="specialismDescription">Specialism</label>
+                  <input type="text" class="form-control" id="specialismDescription"
+                    formControlName="specialismDescription" placeholder="Specialism">
+                </div>
+                <div class="col-md-4">
+                  <label for="ects">ECTS</label>
+                  <select class="form-control" name="ects" id="ects" formControlName="ects" [(ngModel)]="selectedEcts"
+                    (change)='onEctsChange($event)'>
+                    <option *ngFor="let ect of ects" [value]="ect">{{ect}}</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="diplomaName">Diploma Name</label>
+                  <input type="text" class="form-control" id="diplomaName" formControlName="diplomaName"
+                    placeholder="Diploma Name">
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="diplomaName">Study Duration</label>
+                  <input type="number" class="form-control" id="studyDuration" formControlName="studyDuration"
+                    placeholder="Study Duration">
+                </div>
+                <div class="col-md-4">
+                  <label for="diplomaName">Max number of students</label>
+                  <input type="number" class="form-control" id="maxNumber" formControlName="maxNumber"
+                    placeholder="Max number of students">
+                </div>
+                <div class="col-md-4">
+                  <label for="ects">Type of study</label>
+                  <select class="form-control" name="studyType" id="studyType" formControlName="studyType">
+                    <option value="Regular">Regular</option>
+                    <option value="Correspodence">Correspodence</option>
+                    <option value="Online">Online</option>
+                  </select>
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="esac">ESAC</label>
+                  <select class="form-control" name="esac" id="esac" formControlName="esac"
+                    (change)='getEsacText($event)'>
+                    <option value="ENGINEERING and TECHNOLOGY">ENGINEERING and TECHNOLOGY</option>
+                  </select>
+                  <!-- <mat-form-field>
+                        <mat-select formControlName="esac" placeholder="ESAC" (onSelectionChange)="getEsacText($event)">
+                          <mat-option [value]='1'>ENGINEERING and TECHNOLOGY</mat-option>
+                        </mat-select>getEsacFieldText
+                      </mat-form-field> -->
+                </div>
+                <div class="col-md-4">
+                  <label for="esacField">ESAC Field</label>
+                  <select class="form-control" name="esacField" id="esacField" formControlName="esacField"
+                    (change)='getEsacFieldText($event)'>
+                    <option value='Engineering, Technology'>Engineering, Technology</option>
+                    <option value='Mechanical Engineering'>Mechanical Engineering</option>
+                    <option value='Electrical Engineering'>Electrical Engineering</option>
+                    <option value='Chemical Engineering'>Chemical Engineering</option>
+                    <option value='Civil Engineering'>Civil Engineering</option>
+                    <option value='Electronic Engineering, Telecommunications'>
+                      Electronic Engineering, Telecommunications</option>
+                    <option value='Manufacturing Sciences'>Manufacturing Sciences</option>
+                    <option value='Materials Science'>Materials Science</option>
+                    <option value='Aeronautical Engineering'>Aeronautical Engineering</option>
+                    <option value='Others Engineering, Technology'>Others Engineering, Technology</option>
+                  </select>
+                </div>
+              </div>
+
+              <br>
+              <div class="row">
+                <div class="col-md-12">
+                  <button mat-button matStepperNext class="btn btn-primary pull-right"
+                    style="margin-left:5px;">Next</button>
+                  <button mat-button matStepperPrevious class="btn btn-info pull-right">Back</button>
+                </div>
+              </div>
+
+            </form>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Subjects</ng-template>
+            <form [formGroup]="accrSPSubjectsFormGroup">
+              <div formArrayName="subjects" class="installment-form"
+                *ngFor="let subjects of accrSPSubjectsFormGroup.controls['subjects'].controls; let i = index">
+                <br>
+                <div [formGroupName]="i" style="border-bottom:1px solid #eee;min-height: 220px;">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h4>Subject {{i+1}}</h4>
+                    </div>
+                    <div class="col-md-6" *ngIf="i>0">
+                      <h4 class="pull-right" style="cursor: pointer;" (click)="removeSubject(i)">
+                          <i class="fa fa-minus-square" aria-hidden="true" style="color:red"></i>
+                      </h4>
+                    </div>
+                  </div><br>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <label for="esac">Semester</label>
+                      <select class="form-control" name="semesterId" id="semesterId" formControlName="semesterId">
+                        <option *ngFor="let semester of semesters" [value]='semester.id'>{{semester.description}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="description">Subject Name</label>
+                      <input type="text" class="form-control" id="description" formControlName="description"
+                        placeholder="Subject name">
+                    </div>
+                    <div class="col-md-2">
+                      <label for="esac">Professor</label>
+                      <select class="form-control" name="professorId" id="professorId" formControlName="professorId">
+                        <option *ngFor="let professor of academicStaff" [value]='professor.id'>
+                          {{professor.firstName + ' ' + professor.lastName}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-md-2">
+                      <label for="subjectCode">Subject Code</label>
+                      <input type="text" class="form-control" id="subjectCode" formControlName="subjectCode"
+                        placeholder="Subject Code">
+                    </div>
+
+                    <!-- <div class="col-md-2">
+                          <label for="exercisesNum">Credits</label>
+                          <input type="number" class="form-control" id="creditsNum" formControlName="creditsNum"
+                            placeholder="Credits">
+                        </div> -->
+                  </div><br>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <label for="exercisesNum">Lectures</label>
+                      <input type="number" class="form-control" id="lecturesNum" formControlName="lecturesNum"
+                        placeholder="Exercises">
+                    </div>
+                    <div class="col-md-2">
+                      <label for="exercisesNum">Exercises</label>
+                      <input type="number" class="form-control" id="exercisesNum" formControlName="exercisesNum"
+                        placeholder="Exercises">
+                    </div>
+                    <div class="col-md-2">
+                      <label for="consultationNum">Consultation</label>
+                      <input type="number" class="form-control" id="consultationNum" formControlName="consultationNum"
+                        placeholder="Consultation">
+                    </div>
+                    <div class="col-md-2">
+                      <label for="researchNum">Research</label>
+                      <input type="number" class="form-control" id="researchNum" formControlName="researchNum"
+                        placeholder="Research">
+                    </div>
+                    <div class="col-md-2">
+                      <label for="practiceNum">Practice</label>
+                      <input type="number" class="form-control" id="practiceNum" formControlName="practiceNum"
+                        placeholder="Practice">
+                    </div>
+                    <div class="col-md-2">
+                      <label for="exercisesNum">Clinic</label>
+                      <input type="number" class="form-control" id="clinicNum" formControlName="clinicNum"
+                        placeholder="Clinic">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-12">
+                  <button mat-button class="btn btn-primary pull-right" style="margin-left:5px;"
+                    (click)="addNewSubject()">Add New Subject</button>
+                </div>
+              </div>
+              <br>
+              <br>
+              <hr>
+              <div class="row">
+                <div class="col-md-12">
+                  <button mat-button class="btn btn-success pull-right" style="margin-left:5px;"
+                    (click)="apply()">Apply</button>
+                  <button mat-button matStepperPrevious class="btn btn-info pull-right">Back</button>
+                </div>
+              </div>
+            </form>
+          </mat-step>
+        </mat-horizontal-stepper>
+      </div>
+    </div>
+  </div>
+</div>

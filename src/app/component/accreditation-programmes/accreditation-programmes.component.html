@@ -1,0 +1,87 @@
+<div class="app-title">
+  <div>
+    <h1><i class="fa fa-edit"></i> Details of accreditation application</h1>
+    <p>This table shows current study programmes of application.</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb side">
+    <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+    <li class="breadcrumb-item">Accreditation</li>
+    <li class="breadcrumb-item active"><a href="">Details</a></li>
+  </ul>
+</div>
+<br>
+<div class="row mt-5">
+  <div class="col-md-12">
+    <div class="tile" style="margin-top:-40px !important;">
+      <div class="tile-body">
+        <table mat-table [dataSource]="listMatTable" class="mat-elevation-z8">
+          <ng-container matColumnDef="programName">
+            <th mat-header-cell *matHeaderCellDef> Program Name </th>
+            <td mat-cell *matCellDef="let data"> {{data.ProgrammDescription}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="educationLevel">
+            <th mat-header-cell *matHeaderCellDef> Education Level </th>
+            <td mat-cell *matCellDef="let data"> {{data.EducationLevel.Description}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="faculty">
+            <th mat-header-cell *matHeaderCellDef> Faculty </th>
+            <td mat-cell *matCellDef="let data" style="width:11%"> {{data.Faculty.Name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="specialismDescription">
+            <th mat-header-cell *matHeaderCellDef> Specialism </th>
+            <td mat-cell *matCellDef="let data"> {{data.SpecialismDescription}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="ects">
+            <th mat-header-cell *matHeaderCellDef> ECTS </th>
+            <td mat-cell *matCellDef="let data"> {{data.ECTS}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="diplomaName">
+            <th mat-header-cell *matHeaderCellDef> Diploma Name </th>
+            <td mat-cell *matCellDef="let data"> {{data.DiplomaName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="studyDuration">
+            <th mat-header-cell *matHeaderCellDef> Study Duration </th>
+            <td mat-cell *matCellDef="let data"> {{data.StudyDuration}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="maxNumber">
+            <th mat-header-cell *matHeaderCellDef>Max No.</th>
+            <td mat-cell *matCellDef="let data"> {{data.MaxNumber}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="studyType">
+            <th mat-header-cell *matHeaderCellDef> Study Type </th>
+            <td mat-cell *matCellDef="let data"> {{data.StudyType}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="esac">
+            <th mat-header-cell *matHeaderCellDef> Esac </th>
+            <td mat-cell *matCellDef="let data"> {{data.Esac}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="esacField">
+            <th mat-header-cell *matHeaderCellDef> Esac-SubField </th>
+            <td mat-cell *matCellDef="let data"> {{data.EsacField}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="subjects">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Subjects </th>
+
+            <td mat-cell *matCellDef="let data">
+              <a routerLink="/accreditation/programm-subjects/{{data.Id}}/"><span class="fa fa-list fa-1x"></span></a>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

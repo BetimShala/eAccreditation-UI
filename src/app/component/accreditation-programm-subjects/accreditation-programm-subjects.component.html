@@ -1,0 +1,90 @@
+<div class="app-title">
+    <div>
+      <h1><i class="fa fa-edit"></i> Subjects</h1>
+      <p>This table shows current subjects of program "{{programName}}"</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+      <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+      <li class="breadcrumb-item">Accreditation</li>
+      <li class="breadcrumb-item active"><a href="">Subjects</a></li>
+    </ul>
+  </div>
+  <br>
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <div class="tile" style="margin-top:-40px !important;">
+        <div class="tile-body">
+          <table mat-table [dataSource]="listMatTable" class="mat-elevation-z8">
+            <ng-container matColumnDef="semester">
+              <th mat-header-cell *matHeaderCellDef> Semester </th>
+              <td mat-cell *matCellDef="let data"> {{data.Semester.Description}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef> Subject </th>
+              <td mat-cell *matCellDef="let data"> {{data.Description}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="professor">
+              <th mat-header-cell *matHeaderCellDef> Professor </th>
+              <td mat-cell *matCellDef="let data" style="width:11%"> {{data.Professor.FirstName + ' ' + data.Professor.LastName}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="lecturesNum">
+              <th mat-header-cell *matHeaderCellDef> Lectures </th>
+              <td mat-cell *matCellDef="let data"> {{data.LecturesNum}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="exercisesNum">
+              <th mat-header-cell *matHeaderCellDef> Exercises </th>
+              <td mat-cell *matCellDef="let data"> {{data.ExercisesNum}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="researchNum">
+              <th mat-header-cell *matHeaderCellDef> Research </th>
+              <td mat-cell *matCellDef="let data"> {{data.ResearchNum}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="practiceNum">
+              <th mat-header-cell *matHeaderCellDef> Practice </th>
+              <td mat-cell *matCellDef="let data"> {{data.PracticeNum}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="consultationNum">
+              <th mat-header-cell *matHeaderCellDef>Consultation</th>
+              <td mat-cell *matCellDef="let data"> {{data.ConsultationNum}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="clinicNum">
+              <th mat-header-cell *matHeaderCellDef> Clinic </th>
+              <td mat-cell *matCellDef="let data"> {{data.ClinicNum}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="creditsNum">
+              <th mat-header-cell *matHeaderCellDef> ECTS </th>
+              <td mat-cell *matCellDef="let data"> {{data.CreditsNum}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="subjectCode">
+                <th mat-header-cell *matHeaderCellDef> Subject Code </th>
+                <td mat-cell *matCellDef="let data"> {{data.SubjectCode}} </td>
+              </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 'professor',    
+  'description',
+  'semester',
+  'exercisesNum',
+  'lecturesNum',
+  'creditsNum',
+  'consultationNum',
+  'clinicNum',
+  'practiceNum',
+  'researchNum',
+  'subjectCode', -->

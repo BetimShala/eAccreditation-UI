@@ -64,3 +64,8 @@
 @import '../src/assets/scss/vali_sass/4-pages/error-page';
 @import '../src/assets/scss/vali_sass/4-pages/mailbox';
 @import '../src/assets/scss/vali_sass/4-pages/user-profile';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-elevation-z8{
+    box-shadow: none !important;
+}

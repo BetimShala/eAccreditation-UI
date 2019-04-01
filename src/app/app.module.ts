@@ -19,8 +19,17 @@ import { AuthGuard } from './auth/auth.guard';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterComponent } from './component/register/register.component';
 import { APIInterceptor } from './interceptors/apiinterceptor.service';
+import {  MatTableModule, MatFormFieldModule, MatSelectModule} from '@angular/material';
 import { Router } from '@angular/router';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { from } from 'rxjs';
+import { AccreditationProgrammesComponent } from './component/accreditation-programmes/accreditation-programmes.component';
+import { MatPaginatorModule } from '@angular/material';
+import {MatStepperModule} from '@angular/material/stepper';
+import { AccreditationAppCreateComponent } from './component/accreditation-app-create/accreditation-app-create.component'; 
+import {MatInputModule} from '@angular/material';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { AccreditationProgrammSubjectsComponent } from './component/accreditation-programm-subjects/accreditation-programm-subjects.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,17 +43,25 @@ import { Router } from '@angular/router';
     AccreditationAppListComponent,
     LoginComponent,
     LoginLayoutComponent,
-    RegisterComponent
-
-
+    RegisterComponent,
+    AccreditationProgrammesComponent,
+    AccreditationAppCreateComponent,
+    AccreditationProgrammSubjectsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
-
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    NgSelectModule
   ],
   providers: [
     AuthService,

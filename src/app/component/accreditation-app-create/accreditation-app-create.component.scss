@@ -1,0 +1,17 @@
+.mat-form-field{
+    margin-left:35px !important;
+}
+.matFormField {
+    width:340px !important;
+}
+.facFormField{
+    width: 100%;
+}
+.eduFormField{
+    width: 70%;
+}
+ng-select ::ng-deep .focus {
+  border-color: #1268ff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 53, 145, 0.25);
+}

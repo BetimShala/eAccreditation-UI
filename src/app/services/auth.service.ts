@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserLogin } from '../models/user-login.model';
 import { Observable, Subject } from 'rxjs';
 import { UserRegister } from '../models/user-register.model';
+import { UserList } from '../models/user-list.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class AuthService {
 
   login(user: UserLogin) {
     return this.http.post('/api/authentication/authenticate',
-       user ,
+      user,
       {
         responseType: 'text'
       }).subscribe(data => {
@@ -36,21 +37,25 @@ export class AuthService {
       })
   }
 
-  register(user:UserRegister){
+  register(user: UserRegister) {
     console.log(user);
     return this.http.post('/api/authentication/register',
       user,
       {
-       responseType:'json' 
-      }).subscribe(data=>{
-        if(data){
+        responseType: 'json'
+      }).subscribe(data => {
+        if (data) {
           this.router.navigateByUrl('');
         }
-        else{
+        else {
           this.router.navigateByUrl('/login');
         }
       })
-     
+
+  }
+
+  getAcademicStaff(){
+    return this.http.get<UserList[]>('/api/authentication/academic-staff')
   }
 
   get isLoggedIn(): Observable<boolean> {
@@ -59,7 +64,7 @@ export class AuthService {
       // logged in so return true
       subject.next(true);
     }
-    else{
+    else {
       subject.next(false);
     }
     return subject.asObservable();
@@ -67,12 +72,10 @@ export class AuthService {
 
   searchByPN(personalNumber: string){
     console.log(personalNumber);
-      this.http.post('/api/authentication/arc/personalNumber/'+personalNumber,
+      return this.http.post('/api/authentication/arc/personalNumber/'+personalNumber,
       {
        responseType:'json' 
-      }).subscribe(data => {
-              return data;
-        });
+      });
   }
   setRole(token: string) {
     let jwtToken = token;
