@@ -6,6 +6,7 @@ import { AccreditationApplication } from '../models/accreditation-app.model';
 import { AccreditationProgrammes } from '../models/accreditation-programmes.model';
 import { AccreditationApplicationVM } from '../models/accreditation-application';
 import { AccrStudyProgrammesSubjectsVM } from '../models/accreditation-programm-subjects';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,8 @@ import { AccrStudyProgrammesSubjectsVM } from '../models/accreditation-programm-
 export class AccreditationService {
 
   constructor(
-    private http: HttpClient,
-    private router: Router
-  ) { }
+    private http: HttpClient
+    ) { }
 
 
   getAccreditationsList(){
@@ -28,6 +28,13 @@ export class AccreditationService {
 
   getAccreditationProgramSubjects(id:number){
     return this.http.get<AccrStudyProgrammesSubjectsVM[]>(`/api/accreditation/program/${id}/subjects`);
+  }
+
+  getSubjectsFromSems(facultyId:number, educationLevelId:number) : Observable<AccrStudyProgrammesSubjectsVM>{
+    return this.http.post<any>(`/api/accreditation/sems/subjects`,{
+      facultyId,
+      educationLevelId
+    })
   }
 
   applyForAccreditation(model:AccreditationApplicationVM){

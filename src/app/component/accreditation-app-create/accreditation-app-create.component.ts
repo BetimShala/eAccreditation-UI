@@ -17,6 +17,7 @@ import { UserList } from 'src/app/models/user-list.model';
 import { SemesterService } from 'src/app/services/semester.service';
 import { Semester } from 'src/app/models/semester.model';
 import { AccrStudyProgrammesSubjects } from 'src/app/models/accreditation-programm-subjects';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-accreditation-app-create',
@@ -26,34 +27,36 @@ import { AccrStudyProgrammesSubjects } from 'src/app/models/accreditation-progra
 export class AccreditationAppCreateComponent implements OnInit {
   accrAppFormGroup: FormGroup;
   accrSPFormGroup: FormGroup;
-  accrSPSubjectsFormGroup:FormGroup;
+  accrSPSubjectsFormGroup: FormGroup;
 
-  universities:University[];
-  accrTypes:AccreditationTypes[];
-  faculties:Faculty[];
-  educationLevels:EducationLevel[];
-  academicStaff:UserList[];
-  semesters:Semester[];
-  academicYears:string[];
-  ects:string[];
+  universities: University[];
+  accrTypes: AccreditationTypes[];
+  faculties: Faculty[];
+  educationLevels: EducationLevel[];
+  academicStaff: UserList[];
+  semesters: Semester[];
+  academicYears: string[];
+  ects: string[];
 
   model = {} as AccreditationApplicationVM;
 
-  selectedAcademicYear:string;
-  selectedEcts:string;
-  selectedAccrTypeId:number;
-  selectedEsac:string;
-  selectedEsacField:string;
+  selectedAcademicYear: string;
+  selectedEcts: string;
+  selectedAccrTypeId: number;
+  selectedEsac: string;
+  selectedEsacField: string;
+  showImportButton:boolean = true;
   constructor(
     private _formBuilder: FormBuilder,
-    private _accrService:AccreditationService,
-    private _universityService:UniversityService,
-    private _facultyService:FacultyService,
-    private _accrTypesService:AccreditationTypesService,
-    private _eduLevelsService:EducationLevelService,
-    private _authService:AuthService,
-    private _semesterService:SemesterService
-    ) { }
+    private _accrService: AccreditationService,
+    private _universityService: UniversityService,
+    private _facultyService: FacultyService,
+    private _accrTypesService: AccreditationTypesService,
+    private _eduLevelsService: EducationLevelService,
+    private _authService: AuthService,
+    private _semesterService: SemesterService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.getUniversities()
@@ -62,126 +65,123 @@ export class AccreditationAppCreateComponent implements OnInit {
     this.getAcademicStaff();
     this.getSemesters();
     this.accrAppFormGroup = this._formBuilder.group({
-      accreditationTypeId:[0, Validators.required],
-      universityId:[0, Validators.required],
-      academicYear:['', Validators.required],
-      applicationDate:[Date.now],
-      validFromDate:[Date.now],
-      validToDate:[Date.now],
-      verdictId:[1],
-      meetingId:[1],
+      accreditationTypeId: [0, Validators.required],
+      universityId: [0, Validators.required],
+      academicYear: ['', Validators.required],
+      applicationDate: [Date.now],
+      validFromDate: [Date.now],
+      validToDate: [Date.now],
+      verdictId: [1],
+      meetingId: [1],
     });
 
     this.accrSPFormGroup = this._formBuilder.group({
-      programmDescription:['', Validators.required],
-      educationLevelId:[0, Validators.required],
-      facultyId:[0, Validators.required],
-      specialismDescription:['', Validators.required],
-      ects:['', Validators.required],
-      diplomaName:['', Validators.required],
-      studyDuration:['', Validators.required],
-      maxNumber:['', Validators.required],
-      studyType:['', Validators.required],      
-      esac:['', Validators.required],
-      esacField:['',Validators.required]
+      programmDescription: ['', Validators.required],
+      educationLevelId: [0, Validators.required],
+      facultyId: [0, Validators.required],
+      specialismDescription: ['', Validators.required],
+      ects: ['', Validators.required],
+      diplomaName: ['', Validators.required],
+      studyDuration: ['', Validators.required],
+      maxNumber: ['', Validators.required],
+      studyType: ['', Validators.required],
+      esac: ['', Validators.required],
+      esacField: ['', Validators.required]
     });
 
-    
+
     this.accrSPSubjectsFormGroup = this._formBuilder.group({
-      subjects: this._formBuilder.array([this.getInitSubjects()])   
+      subjects: this._formBuilder.array([this.getInitSubjects()])
     })
 
-    this.academicYears = ['2019-2020','2020-2021','2021-2022','2022-2023','2023-2024','2024-2025'];
-    this.ects = ['60','90','120','180','240','300','360']
+    this.academicYears = ['2019-2020', '2020-2021', '2021-2022', '2022-2023', '2023-2024', '2024-2025'];
+    this.ects = ['60', '90', '120', '180', '240', '300', '360']
     this.selectedAcademicYear = this.academicYears[0];
   }
 
-  getInitSubjects(){
+  getInitSubjects() {
     return this._formBuilder.group({
-      professorId:['',Validators.required],
-      description:['',Validators.required],
-      semesterId:['',Validators.required],
-      exercisesNum:['',Validators.required],
-      lecturesNum:['',Validators.required],
-      creditsNum:[10,Validators.required],
-      consultationNum:['',Validators.required],
-      clinicNum:['',Validators.required],
-      practiceNum:['',Validators.required],
-      researchNum:['',Validators.required],
-      subjectCode:['',Validators.required],
+      professorId: ['', Validators.required],
+      description: ['', Validators.required],
+      semesterId: ['', Validators.required],
+      exercisesNum: ['', Validators.required],
+      lecturesNum: ['', Validators.required],
+      creditsNum: [10, Validators.required],
+      consultationNum: ['', Validators.required],
+      clinicNum: ['', Validators.required],
+      practiceNum: ['', Validators.required],
+      researchNum: ['', Validators.required],
+      subjectCode: ['', Validators.required],
     })
   }
 
-  getUniversities(){
+  getUniversities() {
     this._universityService.getUniversities().subscribe(data => {
       this.universities = data;
     })
   }
 
-  getAccreditationTypes(){
+  getAccreditationTypes() {
     this._accrTypesService.getAccreditationTypes().subscribe(data => {
       this.accrTypes = data;
     })
   }
 
-  getFaculties(uniId:number){
+  getFaculties(uniId: number) {
     this._facultyService.getFacultiesByUniversity(uniId).subscribe(data => {
       this.faculties = data;
     })
   }
 
-  getEducationLevels(){
+  getEducationLevels() {
     this._eduLevelsService.getEducationLevels().subscribe(data => {
       this.educationLevels = data;
     })
   }
 
-  getAcademicStaff(){
+  getAcademicStaff() {
     this._authService.getAcademicStaff().subscribe(data => {
       this.academicStaff = data;
     })
   }
 
-  getSemesters(){
+  getSemesters() {
     this._semesterService.getSemeters().subscribe(data => {
       this.semesters = data;
     })
   }
 
-  onUniversityChange(event:any){
+  onUniversityChange(event: any) {
     let target = event.currentTarget
     this.accrAppFormGroup.get('universityId').patchValue(parseInt(target.value));
     this.getFaculties(target.value);
   }
 
-  onAcademicYearChange(event:any){
+  onAcademicYearChange(event: any) {
     let target = event.currentTarget
     this.accrAppFormGroup.get('academicYear').patchValue(target.value);
-    debugger
   }
-  
-  onStudyTypeChange(event:any){
+
+  onStudyTypeChange(event: any) {
     let target = event.currentTarget
-    debugger
     this.accrSPFormGroup.get('studyType').patchValue(target.value);
   }
 
-  onEctsChange(event:any){
+  onEctsChange(event: any) {
     let target = event.currentTarget
     this.accrSPFormGroup.get('ects').patchValue(target.value);
   }
 
-  getEsacText(event:any){
+  getEsacText(event: any) {
     let target = event.currentTarget;
     this.accrSPFormGroup.get('esac').patchValue(target.value);
   }
 
-  getEsacFieldText(event:any){
+  getEsacFieldText(event: any) {
     let target = event.currentTarget;
-    debugger    
     this.accrSPFormGroup.get('esacField').patchValue(target.value);
   }
-  addNewSubject(){
+  addNewSubject() {
     (this.accrSPSubjectsFormGroup.controls['subjects'] as FormArray).push(this.getInitSubjects());
   }
   removeSubject(index: number) {
@@ -189,17 +189,50 @@ export class AccreditationAppCreateComponent implements OnInit {
     const control = <FormArray>this.accrSPSubjectsFormGroup.controls['subjects'];
     // remove the chosen row
     control.removeAt(index);
-}
+  }
 
-  apply(){
+  getSubjectsFromSems() {
+    const facultyId = parseInt(this.accrSPFormGroup.get('facultyId').value);
+    const educationLevelId = parseInt(this.accrSPFormGroup.get('educationLevelId').value);
+    this._accrService.getSubjectsFromSems(facultyId, educationLevelId).subscribe(data => {
+      console.log(data)
+      this.mapSubjects(data)
+    })
+  }
+
+  apply() {
     this.model.AccreditationApplication = this.accrAppFormGroup.value as AccreditationApplication;
     this.model.AccreditationStudyProgrammes = this.accrSPFormGroup.value as AccreditationProgrammes;
     this.model.AccrStudyProgrammesSubjects = this.accrSPSubjectsFormGroup.controls['subjects'].value as AccrStudyProgrammesSubjects[];
-    debugger
     this._accrService.applyForAccreditation(this.model).subscribe(data => {
-      alert(data);
+      if (data == true) {
+        this.router.navigate(['/list'])
+      }
+      else {
+        alert(data['message']);
+      }
     });
-
   }
-  
+
+  mapSubjects(data: any) {
+    this.removeSubject(0);
+    this.showImportButton = false;
+    data.forEach(element => {
+      var subject = this.getInitSubjects();
+      subject.setValue({
+        semesterId: element.semesterId,
+        professorId: '',
+        description: element.subjectName,
+        exercisesNum: element.exercisesNum,
+        lecturesNum: element.lecturesNum,
+        creditsNum: element.creditsNum,
+        consultationNum:element.consultationNum,
+        clinicNum: element.clinicNum,
+        practiceNum: element.practiceNum,
+        researchNum: element.researchNum,
+        subjectCode: element.subjectCode
+      });
+      (this.accrSPSubjectsFormGroup.controls['subjects'] as FormArray).push(subject);
+    });
+  }
 }

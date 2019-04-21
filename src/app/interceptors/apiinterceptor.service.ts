@@ -19,7 +19,6 @@ export class APIInterceptor implements HttpInterceptor {
     request = request.clone({
       url: apiUrl + `${request.url}`,
     });
-    debugger
     if (userToken) {
       request = request.clone({
         setHeaders: {
