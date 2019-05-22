@@ -1,0 +1,80 @@
+<div class="app-title">
+  <div>
+    <h1><i class="fa fa-dashboard"></i> Dashboard</h1>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+  </ul>
+</div>
+<div class="row">
+  <div class="col-md-6 col-lg-4">
+    <div class="widget-small primary coloured-icon">
+      <i class="icon fa fa-university fa-3x"></i>
+      <div class="info">
+        <h4>Number of Accredited Institutions</h4>
+        <p><b>19</b></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4">
+    <div class="widget-small info coloured-icon">
+      <i class="icon fa fa-files-o fa-3x"></i>
+      <div class="info">
+        <h4>Number of Accredited Programs</h4>
+        <p><b>121</b></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4">
+    <div class="widget-small warning coloured-icon">
+      <i class="icon fa fa-users fa-3x"></i>
+      <div class="info">
+        <h4>Number of Academic Staff</h4>
+        <p><b>3630</b></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="tile">
+      <h3 class="tile-title">Number of Accredited Programs by Years</h3>
+      <div class="embed-responsive embed-responsive-16by9">
+        <div
+          class="chart"
+          id="accreditedProgramsChart"
+          style="padding: 0px; overflow-y:auto"
+        >
+          <canvas
+            class="embed-responsive-item"
+            #accreditedProgramsChart
+            width="752"
+            height="423"
+            style="width: 752px; height: 423px;"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="tile">
+      <h3 class="tile-title">Commitments of Academic Staff</h3>
+      <div class="embed-responsive embed-responsive-16by9">
+        <div
+          class="chart"
+          id="academicStaffCommitmentsChart"
+          style="padding: 0px; overflow-y:auto"
+        >
+          <canvas
+            class="embed-responsive-item"
+            #academicStaffCommitmentsChart
+            width="752"
+            height="423"
+            style="width: 752px; height: 423px;"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

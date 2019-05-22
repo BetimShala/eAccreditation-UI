@@ -9,13 +9,18 @@ import { RegisterComponent } from './component/register/register.component';
 import { AccreditationProgrammesComponent } from './component/accreditation-programmes/accreditation-programmes.component';
 import { AccreditationAppCreateComponent } from './component/accreditation-app-create/accreditation-app-create.component';
 import { AccreditationProgrammSubjectsComponent } from './component/accreditation-programm-subjects/accreditation-programm-subjects.component';
+import { HomeComponent } from './component/home/home.component';
 
 const routes: Routes = [
   {
     path: '',                      
     component: DashboardComponent,
-    canActivate: [AuthGuard],       
+    // canActivate: [AuthGuard],       
     children: [
+      {
+        path:'',
+        component:HomeComponent
+      },
       {
         path: 'accreditation',
         children:[

@@ -1,0 +1,37 @@
+.header-pie {
+  background-color: #fff;
+  width: 100%;
+}
+
+.body-pie {
+  padding-top: 15px;
+  // padding-left: 20px;
+}
+
+.name {
+  text-align: left;
+  padding: 15px;
+  color: #000;
+  font-weight: 300;
+}
+
+.chart-pie {
+  border-radius: 5px;
+  border: solid 1px #e8e8e8;
+  //   margin: 3%;
+  margin-bottom: 3%;
+  margin-left: 10px;
+  padding: 0;
+}
+
+.freelabel {
+  text-align: left;
+  color: #638ca6;
+  font-weight: 300;
+}
+
+.soldlabel {
+  text-align: left;
+  color: #52bf8a;
+  font-weight: 300;
+}

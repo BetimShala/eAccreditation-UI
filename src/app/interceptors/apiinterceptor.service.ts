@@ -19,22 +19,22 @@ export class APIInterceptor implements HttpInterceptor {
     request = request.clone({
       url: apiUrl + `${request.url}`,
     });
-    if (userToken) {
-      request = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${userToken}`
-        }
-      });
+    // if (userToken) {
+    //   request = request.clone({
+    //     setHeaders: {
+    //       Authorization: `Bearer ${userToken}`
+    //     }
+    //   });
 
-    }
-    else {
-      if (!request.url.includes('arc')) {
-        this.router.navigateByUrl('/login');
-      }
-      else {
-        //stay there....
-      }
-    }
+    // }
+    // else {
+    //   if (!request.url.includes('arc')) {
+    //     this.router.navigateByUrl('/login');
+    //   }
+    //   else {
+    //     //stay there....
+    //   }
+    // }
 
 
 

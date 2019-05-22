@@ -30,6 +30,7 @@ import { AccreditationAppCreateComponent } from './component/accreditation-app-c
 import {MatInputModule} from '@angular/material';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AccreditationProgrammSubjectsComponent } from './component/accreditation-programm-subjects/accreditation-programm-subjects.component';
+import { HomeComponent } from './component/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +48,7 @@ import { AccreditationProgrammSubjectsComponent } from './component/accreditatio
     AccreditationProgrammesComponent,
     AccreditationAppCreateComponent,
     AccreditationProgrammSubjectsComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
