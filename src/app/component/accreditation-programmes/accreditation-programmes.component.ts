@@ -39,14 +39,14 @@ export class AccreditationProgrammesComponent implements OnInit {
 
   getAccreditationProgrammes(id:number){
     this._accreditationService.getAccreditationProgrammes(id).subscribe(response=>{
-      this.listMatTable.data = response;
+      this.listMatTable.data = response['$values'];
     }, error=>{
       console.log(error);
     })
   }
   
   getPageSizeOptions(): number[] {
-    return [10, 20,50, this.listMatTable.data.length];
+    return [5,10, 20,50, this.listMatTable.data.length];
   }
 
 }

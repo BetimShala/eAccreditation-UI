@@ -89,14 +89,13 @@ export class AccreditationAppCreateComponent implements OnInit {
       esacField: ['', Validators.required]
     });
 
+    this.academicYears = ['2019-2020', '2020-2021', '2021-2022', '2022-2023', '2023-2024', '2024-2025'];
+    this.ects = ['60', '90', '120', '180', '240', '300', '360']
+    this.selectedAcademicYear = this.academicYears[0];
 
     this.accrSPSubjectsFormGroup = this._formBuilder.group({
       subjects: this._formBuilder.array([this.getInitSubjects()])
     })
-
-    this.academicYears = ['2019-2020', '2020-2021', '2021-2022', '2022-2023', '2023-2024', '2024-2025'];
-    this.ects = ['60', '90', '120', '180', '240', '300', '360']
-    this.selectedAcademicYear = this.academicYears[0];
   }
 
   getInitSubjects() {

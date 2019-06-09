@@ -35,13 +35,14 @@ export class AccreditationAppListComponent implements OnInit {
 
   getAccreditationList(){
     this._accreditationService.getAccreditationsList().subscribe(response=>{
-      this.listMatTable.data = response;
+      debugger
+      this.listMatTable.data = response['$values'];
     }, error=>{
       console.log(error);
     })
   }
   
   getPageSizeOptions(): number[] {
-    return [10, 20,50, this.listMatTable.data.length];
+    return [5,10, 20,50, this.listMatTable.data.length];
   }
 }

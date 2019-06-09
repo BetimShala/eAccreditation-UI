@@ -39,8 +39,8 @@ export class AccreditationProgrammSubjectsComponent implements OnInit {
 
   getAccreditationProgramSubjects(id:number){
     this._accreditationService.getAccreditationProgramSubjects(id).subscribe(response=>{
-      this.listMatTable.data = response;
-      this.programName = response[0]['AccrSP'].ProgrammDescription;
+      this.listMatTable.data = response['$values'];
+      this.programName = response['$values'][0]['AccrSP'].ProgrammDescription;
       
     }, error=>{
       console.log(error);
@@ -48,6 +48,6 @@ export class AccreditationProgrammSubjectsComponent implements OnInit {
   }
   
   getPageSizeOptions(): number[] {
-    return [10, 20,50, this.listMatTable.data.length];
+    return [5,10, 20,50, this.listMatTable.data.length];
   }
 }
